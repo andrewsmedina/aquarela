@@ -16,7 +16,7 @@ type game struct{}
 func New(opts *Options) *game {
 	glfw.Init()
 	defer glfw.Terminate()
-	window, _ := glfw.CreateWindow(800, 600, "Cube", nil, nil)
+	window, _ := glfw.CreateWindow(opts.Size[0], opts.Size[1], opts.Caption, nil, nil)
 	window.MakeContextCurrent()
 	for !window.ShouldClose() {
 		window.SwapBuffers()
