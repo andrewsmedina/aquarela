@@ -38,6 +38,12 @@ func (d *director) off() {
 	d.images.Release()
 }
 
+func (d *director) draw(ctx gl.Context) {
+	ctx.ClearColor(0, 0, 0, 1)
+	ctx.Clear(gl.COLOR_BUFFER_BIT)
+	d.scene.Draw(ctx)
+}
+
 func (d *director) loop() {
 	app.Main(func(a app.App) {
 		var glctx gl.Context
@@ -48,6 +54,7 @@ func (d *director) loop() {
 				case lifecycle.CrossOn:
 					glctx, _ = e.DrawContext.(gl.Context)
 					d.on(glctx)
+					a.Send(paint.Event{})
 					fmt.Println("on")
 				case lifecycle.CrossOff:
 					d.off()
@@ -56,6 +63,9 @@ func (d *director) loop() {
 				}
 			case paint.Event:
 				fmt.Println("paint")
+				d.draw(glctx)
+				a.Publish()
+				a.Send(paint.Event{})
 			}
 		}
 	})
