@@ -1,22 +1,25 @@
 package layer
 
 import (
-	"github.com/andrewsmedina/aquarela/label"
 	"golang.org/x/mobile/gl"
 )
 
+type drawer interface {
+	Draw(gl.Context)
+}
+
 type Layer struct {
-	label *label.Label
+	d drawer
 }
 
 func New() *Layer {
 	return &Layer{}
 }
 
-func (l *Layer) Add(lb *label.Label) {
-	l.label = lb
+func (l *Layer) Add(d drawer) {
+	l.d = d
 }
 
 func (l *Layer) Draw(ctx gl.Context) {
-	l.label.Draw(ctx)
+	l.d.Draw(ctx)
 }
