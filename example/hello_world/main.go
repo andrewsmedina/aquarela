@@ -2,16 +2,16 @@ package main
 
 import (
 	"github.com/andrewsmedina/aquarela/director"
-	"github.com/andrewsmedina/aquarela/label"
 	"github.com/andrewsmedina/aquarela/layer"
 	"github.com/andrewsmedina/aquarela/scene"
+	"github.com/andrewsmedina/aquarela/sprite"
 )
 
 func main() {
-	l := label.New("Hello, World!", []int{320, 240})
+	s := sprite.New("image.png", []int{320, 240})
 
 	helloLayer := layer.New()
-	helloLayer.Add(l)
+	helloLayer.Add(s)
 
 	mainScene := scene.New(helloLayer)
 
