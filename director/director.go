@@ -42,6 +42,7 @@ func (d *director) draw(ctx gl.Context) {
 	ctx.ClearColor(0, 0, 0, 1)
 	ctx.Clear(gl.COLOR_BUFFER_BIT)
 	d.scene.Draw(ctx)
+	d.eng.Render(scene, now, sz)
 }
 
 func (d *director) loop() {
