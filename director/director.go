@@ -17,10 +17,10 @@ import (
 )
 
 type director struct {
-	scene  *scene.Scene
-	images *glutil.Images
-	eng    sprite.Engine
-	n *sprite.Node
+	scene     *scene.Scene
+	images    *glutil.Images
+	eng       sprite.Engine
+	n         *sprite.Node
 	startTime time.Time
 }
 
@@ -73,7 +73,8 @@ func (d *director) loop() {
 				sz = e
 			case paint.Event:
 				fmt.Println("paint")
-				d.draw(glctx, sz)
+				//d.draw(glctx, sz)
+				fmt.Println(sz)
 				a.Publish()
 				a.Send(paint.Event{})
 			}
